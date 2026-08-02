@@ -39,3 +39,29 @@
 ---
 
 以上のルールを守り、安定したGit運用を目指しましょう。
+
+## デプロイ先
+
+- **本番URL**: https://ai-bambi.github.io/task-boad202608/
+- **デプロイ方法**: `main` ブランチへの push で GitHub Actions が自動実行され、`dist/` を GitHub Pages に公開する。
+- **ワークフロー**: [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
+
+## 技術スタック
+
+| 種別 | 採用技術 |
+|------|----------|
+| UIライブラリ | React 19 |
+| ビルドツール | Vite 8 |
+| スタイリング | CSS Modules（グローバル `index.css` + コンポーネント別 `App.css`） |
+| 状態管理 | React `useState` / `useEffect`（外部ライブラリなし） |
+| 永続化 | `localStorage`（キー: `tasks`） |
+| パッケージマネージャ | npm |
+| デプロイ | GitHub Actions + GitHub Pages |
+
+## コンポーネントの命名規約
+
+- **ファイル名**: PascalCase（例: `App.jsx`, `TaskItem.jsx`）
+- **コンポーネント関数**: PascalCase で export default（例: `export default function App()`）
+- **スタイルファイル**: コンポーネントと同名の CSS ファイルを同ディレクトリに配置（例: `App.jsx` → `App.css`）
+- **ユーティリティ関数**: camelCase、コンポーネント外にモジュールスコープで定義（例: `loadTasks`, `nextId`）
+- **定数**: UPPER_SNAKE_CASE（例: `STORAGE_KEY`）
